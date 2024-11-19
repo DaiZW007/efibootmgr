@@ -1139,8 +1139,11 @@ show_vars(const char *prefix)
 		printf("%c ", (efi_loadopt_attrs(load_option)
 			       & LOAD_OPTION_ACTIVE) ? '*' : ' ');
 		printf("%s", description);
-
-		show_var_path(load_option, boot->data_size);
+		if(opts.verbose || opts.unicode) {
+			show_var_path(load_option, boot->data_size);
+		} else {
+			printf("\n");
+		}
 
 		fflush(stdout);
 	}
